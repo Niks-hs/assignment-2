@@ -5,6 +5,11 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true,
             primaryKey: true,
         },
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {notEmpty: true}
+        },
         // DEFINE YOUR MODEL HERE
     });
   
