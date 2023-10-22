@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 
+function info(contact){
+    
+}
+
+
 function Task(props){
     function onClick(){
         props.setTasks(tasks => tasks.filter(task => task.id !== props.id))
