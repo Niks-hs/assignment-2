@@ -12,9 +12,14 @@ module.exports = (sequelize, Sequelize) => {
         },
         phone_no: {
             allowNull: false,
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             validate: {notEmpty: true},
         },
+        contactId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            foreignKey: true,
+        }
         // DEFINE YOUR MODEL HERE
     });
   

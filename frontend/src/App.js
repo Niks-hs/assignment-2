@@ -32,12 +32,25 @@ function Contact({contact, onDelete, onDeleteInfo}){
     };
 
     return (
-        <div>
-        <h3 onClick={handleExpand}>{contact.name}
-        <button type = "button" onClick={onDelete}>Delete</button>
-        </h3>
-        {isExpanded && (
+        <div style={{border: '1px solid #000',
+        borderRadius: '5px', padding: '4px'}}>
             <div style={{
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                }}>
+                    <h3 onClick={handleExpand}>{contact.name}</h3>
+                    <button style={{
+                        backgroundColor: 'red', 
+                        color: 'white',
+                        border: 'none',
+                        padding: '5px 5px',
+                        borderRadius: '5px', opacity: 0.7}}
+                    type = "button" onClick={onDelete}>Delete</button>
+            </div>
+                        
+            {isExpanded && (
+                <p><br/><div style={{
                 display: 'flex', 
                 justifyContent: 'space-between', 
                 alignItems: 'center',
@@ -55,7 +68,7 @@ function Contact({contact, onDelete, onDeleteInfo}){
                 <button onClick={onDelete}>Delete</button>
                 </div>
             ))}
-            </div>
+            </div></p>
         )}
         </div>
     );
@@ -76,15 +89,20 @@ function Task({props}){
     }
 
     return(
-        <div style={{border:'1px solid #000', padding: '10px'}}>
-            <div style={{
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center',
-                }}>
-            <form onSubmit={onClickAdd}>
-                <input name="name" value={contact.name} onChange={onChangeContact} placeholder="Contact Name" />
-                <button type="submit">Add Contact</button>
+        <div style={{padding: '10px'}}>
+            <div >
+            <form onSubmit={onClickAdd} >
+                <p>
+                    <input name="name" value={contact.name} 
+                    onChange={onChangeContact} placeholder="Name" />
+                </p>
+                <button type="submit" style={{
+                    backgroundColor: 'green', 
+                    color: 'white',
+                    border: 'none',
+                    padding: '5px 5px',
+                    borderRadius: '5px'}}>
+                    Create Contact</button>
             </form>
                 
             </div>
@@ -107,10 +125,6 @@ function Content() {
         setNewTask([...nTask, newTask]);
     }
 
-    function onClickInfo(info2){
-        setNewTask["Nikhil"].contacts.push(info2);
-    }
-
     const handleDelete = (index) => {
         const newContacts = [...nTask];
         newContacts.splice(index, 1);
@@ -131,16 +145,23 @@ function Content() {
                 justifyContent: 'center', 
                 alignItems: 'center',
                 }}>
-                    <div style={{ textAlign: 'center', width: '500px', border: '1px solid #000', padding: '10px'}}>
+                    <div style={{ 
+                        textAlign: 'center', 
+                        width: '500px', 
+                        border: '1px solid #000',
+                        borderRadius: '5px',
+                        padding: '5px'}}>
                         <h2>Contacts</h2>
                         <Task props = {onClick} />
 
                         {nTask.map((nTask, index) => (
                             <Contact key={index} contact={nTask} onDelete={handleDelete} 
-                            onDeleteInfo={handleDeleteInfo} props2={onClickInfo}/>
+                            onDeleteInfo={handleDeleteInfo}/>
                         ))}
-                    </div>       
+                    </div>                          
             </div>
+            <p style={{opacity: 0.7, padding: '10px', fontSize: '12.5px'}}>
+                Click a contact to view associated phone numbers</p>
         </div>
     );
 }
