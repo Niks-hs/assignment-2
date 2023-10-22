@@ -34,41 +34,55 @@ function Contact({contact, onDelete, onDeleteInfo}){
     return (
         <div style={{border: '1px solid #000',
         borderRadius: '5px', padding: '4px'}}>
-            <div style={{
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center',
-                }}>
-                    <h3 onClick={handleExpand}>{contact.name}</h3>
+            <div>
+                    <li style={{listStyleType:'none', display: 'flex', 
+                        justifyContent: 'space-between',}} onClick={handleExpand}>
+                        {contact.name}
                     <button style={{
                         backgroundColor: 'red', 
                         color: 'white',
                         border: 'none',
                         padding: '5px 5px',
                         borderRadius: '5px', opacity: 0.7}}
-                    type = "button" onClick={onDelete}>Delete</button>
+                    type = "button" onClick={onDelete}>Delete</button></li>
+            </div>
+            <div>
+                        <hr />
             </div>
                         
             {isExpanded && (
-                <p><br/><div style={{
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center',
-                }}>
-                <form style={{display:'flex', justifyContent: 'space-between'}} onSubmit={AddTest2}>
-                    <input type="text" name="type" placeholder="Phone Type" value={info.type} onChange={onChangeInfoTest}/>
-                    <input type="text" name="number" placeholder="Phone Number" value={info.number} onChange={onChangeInfoTest}/>
-                    <button type = "submit">Add</button>
-                </form>             
+                <div>
+                    <li style={{listStyleType:'none', padding: '5px'}}>
+                        <form style={{display:'flex', justifyContent: 'space-between'}} onSubmit={AddTest2}>
+                            <input type="text" name="type" placeholder="Phone Type" value={info.type} onChange={onChangeInfoTest}/>
+                            <input type="text" name="number" placeholder="Phone Number" value={info.number} onChange={onChangeInfoTest}/>
+                            <button type = "submit">Add</button>
+                        </form> 
+                    </li>
+                    <li style={{listStyleType:'none', padding: '5px', border: '1px solid' }}>
+                        <form style={{display:'flex', justifyContent: 'space-between'}} >
+                            <li>Type</li>
+                            <li>Number</li>
+                            <li>Action</li>
+                        </form> 
+                    </li>           
 
-            {contact.contacts.map((item, index) => (
-                <div key={index}>
-                <span>{item.type}: </span>
-                <span>{item.number}</span>
-                <button onClick={onDelete}>Delete</button>
-                </div>
-            ))}
-            </div></p>
+                    {contact.contacts.map((item, index) => (
+                            <li style={{listStyleType:'none', padding: '5px', border: '1px solid'}}>
+                                <form key = {index} style={{display:'flex', justifyContent: 'space-between'}}>
+                                    <li>{item.type}</li>
+                                    <li>{item.number}</li>
+                                    <li><button style={{
+                                        backgroundColor: 'red', 
+                                        color: 'white',
+                                        border: 'none',
+                                        padding: '5px 5px',
+                                        borderRadius: '5px', opacity: 0.7}}
+                                        onClick={onDelete}>Delete</button></li>
+                                </form>
+                            </li>
+                    ))}
+            </div>
         )}
         </div>
     );
@@ -160,8 +174,10 @@ function Content() {
                         ))}
                     </div>                          
             </div>
-            <p style={{opacity: 0.7, padding: '10px', fontSize: '12.5px'}}>
-                Click a contact to view associated phone numbers</p>
+            <li style={{opacity: 0.7, padding: '10px', fontSize: '12.5px'}}>
+                Click a contact to view associated phone numbers</li>
+            <li style={{opacity: 0.7, padding: '10px', fontSize: '12.5px'}}>
+                Show Stats</li>
         </div>
     );
 }
