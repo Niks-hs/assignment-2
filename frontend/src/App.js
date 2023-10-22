@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';  // import useEffect
 import './App.css';
 
-function Contact({contact, onDelete, onDeleteInfo}){
+function Contact({contact, onDelete}){
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const handleExpand = () => {
+    function handleExpand(){
         setIsExpanded(!isExpanded);
     };
 
@@ -24,12 +24,6 @@ function Contact({contact, onDelete, onDeleteInfo}){
         contact.contacts.push(newContact);
         setInfo({ type: "", number: "" });
     }
-
-    const handleDeleteInfo = (index) => {
-        const infoDel = [...info];
-        infoDel.splice(index, 1);
-        setInfo(infoDel);
-    };
 
     return (
         <div style={{border: '1px solid #000',
@@ -144,13 +138,7 @@ function Content() {
         newContacts.splice(index, 1);
         setNewTask(newContacts);
     };
-
-    const handleDeleteInfo = (index) => {
-        const newContacts = [...nTask];
-        newContacts.contacts.splice(index, 1);
-        setNewTask(newContacts);
-    };
-    
+   
     return(
         <div style={{textAlign: 'center'}}>     
             <h1>Contactor</h1>
@@ -169,8 +157,7 @@ function Content() {
                         <Task props = {onClick} />
 
                         {nTask.map((nTask, index) => (
-                            <Contact key={index} contact={nTask} onDelete={handleDelete} 
-                            onDeleteInfo={handleDeleteInfo}/>
+                            <Contact key={index} contact={nTask} onDelete={handleDelete} />
                         ))}
                     </div>                          
             </div>
